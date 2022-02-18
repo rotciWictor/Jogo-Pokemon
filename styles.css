@@ -1,0 +1,353 @@
+@font-face {
+    font-family: joystick;
+    src: url(./assets/fonts/joystix\ monospace.ttf) format('truetype');
+}
+@font-face {
+    font-family: game_over;
+    src: url(./assets/fonts/game_over.ttf) format('truetype');
+}
+@font-face {
+    font-family: pokemon-hollow;
+    src: url(./assets/fonts/Pokemon\ Hollow.ttf) format('truetype');
+}
+@font-face {
+    font-family: pokemon-solid;
+    src: url(./assets/fonts/Pokemon\ Solid.ttf) format('truetype');
+}
+
+#teladeinicio{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    height: 99vh;
+    width: 100%;
+    background-image: url(assets/images/telainicio.png);
+    background-size: cover;
+}
+
+
+#start{
+    border-radius: 50%;
+    height: fit-content;
+    width: fit-content;
+    border: none;
+}
+
+#parte1{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#a{
+    font-family: pokemon-solid;
+    text-align: center;
+}
+#titulojogo{
+    margin: 0;
+    margin-bottom: 100px;
+    font-family: joystick;
+    font-size: 60px;
+    color: #e21313;
+    text-shadow: 
+         -1px -1px 0px #000000de, 
+         -1px 1px 0px #000000de,      
+          1px -1px 0px #000000de,    
+          1px 0px 0px #000000de;
+}
+
+#listapersonagens{
+    width: 90vw;
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 120px;
+}
+
+#btnbatalha{
+    border-radius: 25%;
+    background-color: #32545B;
+}
+
+#escolhap1, #escolhap2{
+    height: 200px;
+    width: auto;
+}
+
+.poke{
+    background-color: #faeb1fda;
+    border-color:#faeb1fda ;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+.poke:hover{
+    transform: translateY(-3px);
+    cursor: pointer;
+}
+
+.personagens{
+    display: flex;
+    flex-direction: column;
+}
+
+#confronto{
+    height: 330px;
+    width: 950px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 2em;
+    font-family: pokemon-solid;
+    font-size: large;
+}
+.personagem{
+    width:500px ;
+}
+.atributos{
+    width: 300px;
+}
+
+#players{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 80px;
+}
+
+
+h1{
+    text-align: center;
+}
+
+#campobatalha{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+img{
+    height: 120px;
+    width: 80px;
+}
+
+body {
+    background-color: #faeb1fda;
+}
+
+main{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+#div-btn{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+#caracter-selection{
+    display:flex;
+    height: fit-content;
+    width: fit-content;
+}
+.pokebola{
+    height: 8em;
+    width: 12em;
+    padding: 0 1em;
+}
+#battle-area{
+    height: fit-content;
+    width: fit-content;
+    border: black 2px solid;
+
+}
+#battle-area{
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 31em;
+    width: 80em;
+    overflow: hidden;
+}
+.ground{
+    height: 7em;
+    width:  11em;
+    border-radius: 50%;
+    background-color: greenyellow;
+    
+}
+#ground-p1{
+    position: absolute;
+    top: 10em;
+    right: 17em;
+}
+#ground-p2{
+    position: absolute;
+    bottom: 7em;
+    left: 19em;
+
+}
+.player{
+    display: flex;
+    justify-content: space-evenly;
+    height: 15em;
+    width: 80em;
+}
+#player2{
+    flex-direction: row-reverse;
+}
+.img-player{
+    margin: 20px;
+    height: 180px;
+    width: auto;
+    z-index: 1;
+}
+.status-player {
+  background-color: #FFFFFFAA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 16em;
+  width: 18em;
+  border-radius: 1em;
+  z-index: 1;
+
+}
+
+.hp,
+.mp,
+.rage {
+  margin: -0.6em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hp-bar,
+.mp-bar{
+  height: 1em;
+  width: 12em;
+  margin: 0 2px;
+  border-radius: 2em;
+  background-color: grey;
+  display: flex;
+}
+.rage-bar{
+  height: 0.4em;
+  width: 12em;
+  margin: 0 2px;
+  border-radius: 2em;
+  background-color: grey;
+  display: flex;
+}
+#hp-p1, #hp-p2{
+  --hp: 100;
+}
+#hp-p1::before, #hp-p2::before {
+  content: "";
+  width: calc(var(--hp) * 1%);
+  background-color: hsl( calc(var(--hp) * 1.2) , 80%, 50%);
+  transition: all 1s ease;
+  border-radius: 2em;
+}
+#mp-p1, #mp-p2{
+  --mp: 100;
+}
+#mp-p1::before, #mp-p2::before {
+  content: "";
+  width: calc(var(--mp) * 1%);
+  background-color: blue;
+  transition: all 0.5s ease;
+  border-radius: 2em;
+}
+#rage-p1, #rage-p2{
+  --rg: 0;
+}
+#rage-p1::before, #rage-p2::before {
+  content: "";
+  width: calc(var(--rg) * 1%);
+  background-color: red;
+  transition: all 0.5s ease;
+  border-radius: 2em;
+}
+.hp-numbers,
+.mp-numbers {
+  display: flex;
+  justify-content: space-evenly;
+  width: 8em;
+  font-size: x-large;
+  font-weight: bold;
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px #00000033;
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px #00000033;
+}
+.btn:disabled{
+    background-color: #808080;
+    transform: none;
+    box-shadow: none;
+
+}
+.btn{
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color: #2121dfcc;
+}
+.btn-green {
+    background-color: #14a514cc;
+}
+.btn-red {
+    background-color: #df3131cc;
+}
+.btn-orange {
+    background-color: #fcb737cc;
+}
+.btn-black {
+    background-color: #000000cc;
+}
+#text-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: black 5px solid;
+    height: 95px;
+    width: 350px;
+    background-color: #ffffdd;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+#controls{
+    background-color: #cccccc;
+    width: 1270px;
+    height: 100px;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 0.5em black solid;
+}
+.description{
+    text-align: center;
+    font-weight: bold;
+}
+
