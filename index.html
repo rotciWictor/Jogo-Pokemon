@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+        integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script src="jogoclass.js" defer></script>
     <title>Batalha épica</title>
+
 </head>
 
 <body>
@@ -67,7 +73,8 @@
                 <h2 id="nome-personagem-p2"></h2>
                 <img id="escolhap2">
                 <h3 id="universo-personagem-p2"></h3>
-                <input id="btn-finalizarSelecao" type="button" value="Escolher" onclick="finalizarSelecao()" style="display: none" />
+                <input id="btn-finalizarSelecao" type="button" value="Escolher" onclick="finalizarSelecao()"
+                    style="display: none" />
             </div>
             <div class="atributos" id="atributos-personagem-p2">
                 <h4 id="hp2"></h4>
@@ -79,9 +86,9 @@
                 <h4></h4>
             </div>
         </div>
-        <div id="div-btn" style="display: none"><button id="btnbatalha" onclick="batalhar()"><img src="assets/images/botaoluta.png"
-                    style="height: fit-content;"></button>
-                <input type="button" value="Escolher novamente" onclick="reselect()"></div>
+        <div id="div-btn" style="display: none"><button id="btnbatalha" onclick="batalhar()"><img
+                    src="assets/images/botaoluta.png" style="height: fit-content;"></button>
+            <input type="button" value="Escolher novamente" onclick="reselect()"></div>
     </section>
     </div>
     </div>
@@ -156,11 +163,13 @@
                 <div class:="controls" id="controls-p1">
                     <h3 class="description" id="description-p1"></h3>
                     <div>
-                        <input class="btn btn-blue" type="button" value="" id="btnFraco1" onclick="weakAttack(1)">
-                        <input class="btn btn-green" type="button" value="" id="btnForte1" onclick="hardAttack(1)">
-                        <input class="btn btn-red" type="button" value="" id="btnEspecial1" onclick="specialAttack(1)">
-                        <input class="btn btn-orange" type="button" value="" id="btnOrange1" onclick="recoilAttack(1)">
-                        <input class="btn btn-black" type="button" value="" id="btnBlack1" onclick=>
+                        <input class="btn btn-blue" type="button" value="" id="btnFraco1" onclick="lightAttack(1,2)">
+                        <input class="btn btn-green" type="button" value="" id="btnForte1" onclick="heavyAttack(1,2)">
+                        <input class="btn btn-red" type="button" value="" id="btnEspecial1"
+                            onclick="specialAttack(1,2)">
+                        <input class="btn btn-orange" type="button" value="" id="btnOrange1"
+                            onclick="recoilAttack(1,2)">
+                        <input class="btn btn-black" type="button" value="" id="btnBlack1" onclick=attBoost(1)>
                     </div>
                 </div>
                 <div id="text-box">
@@ -169,11 +178,13 @@
                 <div class:="controls" id="controls-p2">
                     <h3 class="description" id="description-p2"></h3>
                     <div>
-                        <input class="btn btn-blue" type="button" value="" id="btnFraco2" onclick="weakAttack(2)">
-                        <input class="btn btn-green" type="button" value="" id="btnForte2" onclick="hardAttack(2)">
-                        <input class="btn btn-red" type="button" value="" id="btnEspecial2" onclick="specialAttack(2)">
-                        <input class="btn btn-orange" type="button" value="" id="btnOrange2" onclick="recoilAttack(2)">
-                        <input class="btn btn-black" type="button" value="" id="btnBlack2" onclick=>
+                        <input class="btn btn-blue" type="button" value="" id="btnFraco2" onclick="lightAttack(2,1)">
+                        <input class="btn btn-green" type="button" value="" id="btnForte2" onclick="heavyAttack(2,1)">
+                        <input class="btn btn-red" type="button" value="" id="btnEspecial2"
+                            onclick="specialAttack(2,1)">
+                        <input class="btn btn-orange" type="button" value="" id="btnOrange2"
+                            onclick="recoilAttack(2,1)">
+                        <input class="btn btn-black" type="button" value="" id="btnBlack2" onclick=attBoost(2)>
                     </div>
                 </div>
             </section>
@@ -181,9 +192,6 @@
             <audio id="soundeffect2"></audio>
         </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="jogoclass.js"></script>
 </body>
 
 </html>

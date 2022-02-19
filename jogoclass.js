@@ -1,5 +1,5 @@
 class Hero {
-  constructor(name, type, universe, st, agi, int, atksound, atk2sound, atk3sound) {
+  constructor(name, type, universe, st, agi, int, atksound, atk2sound, atk3sound,img,rageimg) {
     this.name = name //Nome
     this.type = type //Tipo
     this.universe = universe //Universo. Ex.: Disney, Marvel, League of Legends
@@ -7,11 +7,11 @@ class Hero {
     this.agi = agi //Agilidade
     this.int = int //Inteligência
     this.hp = this.st * 12 //Pontos de Vida
-    this.hpatual = this.hp // Pontos de Vida atualizado
+    this.hpactual = this.hp // Pontos de Vida atualizado
     this.mp = this.int * 7 //Mana (Pontos para execução de habilidades)
-    this.mpatual = this.mp
+    this.mpactual = this.mp
     this.rage = 0
-    this.rageatual = this.rage
+    this.rageactual = this.rage
     this.def = this.agi * 2 //Defesa
     this.atkPower = 20 //Ataque base
     this.damage = 0 //força do ataque da vez (danocausado)
@@ -19,6 +19,8 @@ class Hero {
     this.atksound = atksound;
     this.atk2sound = atk2sound;
     this.atk3sound = atk3sound;
+    this.img = img
+    this.rageimg = rageimg
     this.dmgUp()
 
   }
@@ -53,17 +55,13 @@ class Hero {
     this.damage = Math.ceil(this.atkPower * ((Math.random() * 0.4) + 0.4))
   }
 
-  hardAtk() {
+  heavyAtk() {
     this.damage = Math.ceil(this.atkPower * ((Math.random() * 0.3) + 0.7))
   }
 
   special() {
     this.damage = Math.ceil(this.atkPower * ((Math.random() * 0.5) + 1))
   }
-  temporaryIncreaceAtt() {
-
-  }
-
 
 }
 const backgrounds = ["assets/images/backgrounds/battleback0.png", "assets/images/backgrounds/battleback1.png", "assets/images/backgrounds/battleback2.png", "assets/images/backgrounds/battleback3.png", "assets/images/backgrounds/battleback4.png", "assets/images/backgrounds/battleback5.png", "assets/images/backgrounds/battleback6.png", "assets/images/backgrounds/battleback7.png", "assets/images/backgrounds/battleback8.png", "assets/images/backgrounds/battleback9.png"]
@@ -73,9 +71,8 @@ const soundeffect2 = document.getElementById("soundeffect2");
 const music = document.getElementById("theme")
 const textBox = document.getElementById("text-box")
 music.setAttribute("src", "assets/sounds/y2meta.com - Pokemon Red, Yellow, Blue Battle Music- Trainer (256 kbps).mp3")
-music.volume = 0.5;
-soundeffect.volume = 0.5;
-soundeffect2.volume = 0.5;
+music.volume = 0.4;
+
 //tela de inicio
 function start() {
   document.getElementById('teladeinicio').style.display = 'none';
@@ -95,23 +92,27 @@ function batalhar() {
 }
 //Define um fundo para a batalha randomicamente
 function randomBackground() {
-  let background = backgrounds[Math.floor(Math.random() * 10)]
+  const randomNumber = Math.floor(Math.random() * 10)
+  const background = backgrounds[randomNumber]
+  const groundColors = ["#72ad73","#7e9f73","#cdd0cf","#f1c66a","#e6a959","#8b6c56","#cc9b4d","#ba5945","#4d6461","#93745c"]
   document.getElementById("battle-area").style.backgroundImage = `url("${background}"`
+  document.getElementById("ground-p1").setAttribute("style", `background: ${groundColors[randomNumber]};box-shadow: inset 0 0 1em black;`)
+  document.getElementById("ground-p2").setAttribute("style", `background: ${groundColors[randomNumber]};box-shadow: inset 0 0 1em black;`)
 }
 
 // personagens criados pela class Hero pré definidos
-let mula = new Hero("Mula sem Cabeça", 2, "Malora", 20, 26, 10, "assets/sounds/mula/GALLOPS.WAV", "assets/sounds/mula/GALLOPS2.WAV", "assets/sounds/mula/GALLOPS3.WAV");
-let monica = new Hero("Mônica", 3, "do bairro do Limoeiro", 10, 16, 18, 'assets/sounds/monica/monica1.mp3', 'assets/sounds/monica/monica2.mp3', 'assets/sounds/monica/monica3.mp3');
-let princesa = new Hero("Shena", 1, "Guerreira", 23, 20, 20, 'assets/sounds/chena/chena.mp3', 'assets/sounds/chena/chenaescolha.mp3', 'assets/sounds/chena/chena2.mp3');
-let darth = new Hero("Darth Vader", 1, "De uma galáxia muito distante", 33, 13, 20, 'assets/sounds/darth/darthescolha.wav', 'assets/sounds/darth/darth2.wav', 'assets/sounds/darth/darth1.wav');
-let chucky = new Hero("Chucky", 1, "Brinquedo Assassino", 25, 20, 15, 'assets/sounds/chucky/Chucky 2.mp3', 'assets/sounds/chucky/chucky.mp3', 'assets/sounds/chucky/chucky3.mp3');
-let freddy = new Hero("Freddy", 2, "Animatronic", 15, 35, 25, 'assets/sounds/freddy/fnaf.wav', 'assets/sounds/freddy/fnaf2.mp3', 'assets/sounds/freddy/fnaf3.wav');
-let pintinho = new Hero("Pintinho Amarelinho", 3, "Fazenda", 10, 20, 30, 'assets/sounds/pintinho/pintinho1.mp3', 'assets/sounds/pintinho/pintinho2.mp3', 'assets/sounds/pintinho/pintinho3.mp3');
-let lula = new Hero("Lula Molusco", 3, "Fenda do biquini", 10, 12, 12, 'assets/sounds/lula/lula1.mp3', 'assets/sounds/lula/lula2.mp3', 'assets/sounds/lula/lula3.mp3');
-let yoshi = new Hero("Yoshi", 2, "Mario World", 19, 30, 12, 'assets/sounds/yoshi/yoshi1.mp3', 'assets/sounds/yoshi/yoshi2.mp3', 'assets/sounds/yoshi/yoshi3.mp3');
-let bart = new Hero("Bart Simpson", 2, "Springfield", 11, 25, 10, 'assets/sounds/bart/bart1.mp3', 'assets/sounds/bart/bart2.mp3', 'assets/sounds/bart/bart3.mp3');
-let boitata = new Hero("Boitatá", 1, "No rio mais proximo de você", 29, 18, 16, 'assets/sounds/boitata/boitata1.mp3', 'assets/sounds/boitata/boitata2.mp3', 'assets/sounds/boitata/boitata3.mp3');
-let charizard = new Hero("Charizard",1,"Kanto",30,25,18)
+let mula = new Hero("Mula sem Cabeça", 2, "Malora", 20, 26, 10, "assets/sounds/mula/GALLOPS.WAV", "assets/sounds/mula/GALLOPS2.WAV", "assets/sounds/mula/GALLOPS3.WAV","assets/images/mula/mula1.png","assets/images/mula/mula2.png");
+let monica = new Hero("Mônica", 3, "do bairro do Limoeiro", 10, 16, 18, 'assets/sounds/monica/monica1.mp3', 'assets/sounds/monica/monica2.mp3', 'assets/sounds/monica/monica3.mp3',"assets/images/monica/monica1.png","assets/images/monica/monica2.png");
+let princesa = new Hero("Shena", 1, "Guerreira", 23, 20, 20, 'assets/sounds/chena/chena.mp3', 'assets/sounds/chena/chenaescolha.mp3', 'assets/sounds/chena/chena2.mp3',"assets/images/princesa/princesa1.png","assets/images/princesa/princesa2.png");
+let darth = new Hero("Darth Vader", 1, "De uma galáxia muito distante", 33, 13, 20, 'assets/sounds/darth/darthescolha.wav', 'assets/sounds/darth/darth2.wav', 'assets/sounds/darth/darth1.wav',"assets/images/darth/darth1.png","assets/images/darth/darth2.png");
+let chucky = new Hero("Chucky", 1, "Brinquedo Assassino", 25, 20, 15, 'assets/sounds/chucky/Chucky 2.mp3', 'assets/sounds/chucky/chucky.mp3', 'assets/sounds/chucky/chucky3.mp3',"assets/images/chucky/chucky1.png","assets/images/chucky/chucky1.png");
+let freddy = new Hero("Freddy", 2, "Animatronic", 15, 35, 25, 'assets/sounds/freddy/fnaf.wav', 'assets/sounds/freddy/fnaf2.mp3', 'assets/sounds/freddy/fnaf3.wav',"assets/images/freddy/freddy1.png","assets/images/freddy/freddy2.png");
+let pintinho = new Hero("Pintinho Amarelinho", 3, "Fazenda", 10, 20, 30, 'assets/sounds/pintinho/pintinho1.mp3', 'assets/sounds/pintinho/pintinho2.mp3', 'assets/sounds/pintinho/pintinho3.mp3',"assets/images/pintinho/pintinho1.png","assets/images/pintinho/pintinho2.png");
+let lula = new Hero("Lula Molusco", 3, "Fenda do biquini", 10, 12, 12, 'assets/sounds/lula/lula1.mp3', 'assets/sounds/lula/lula2.mp3', 'assets/sounds/lula/lula3.mp3',"assets/images/lula/lula1.png","assets/images/lula/lula2.png");
+let yoshi = new Hero("Yoshi", 2, "Mario World", 19, 30, 12, 'assets/sounds/yoshi/yoshi1.mp3', 'assets/sounds/yoshi/yoshi2.mp3', 'assets/sounds/yoshi/yoshi3.mp3',"assets/images/yoshi/yoshi1.png","assets/images/yoshi/yoshi2.png");
+let bart = new Hero("Bart Simpson", 2, "Springfield", 11, 25, 10, 'assets/sounds/bart/bart1.mp3', 'assets/sounds/bart/bart2.mp3', 'assets/sounds/bart/bart3.mp3',"assets/images/bart/bart1.png","assets/images/bart/bart2.png");
+let boitata = new Hero("Boitatá", 1, "No rio mais proximo de você", 29, 18, 16, 'assets/sounds/boitata/boitata1.mp3', 'assets/sounds/boitata/boitata2.mp3', 'assets/sounds/boitata/boitata3.mp3',"assets/images/boitata/boitata1.png","assets/images/boitata/boitata2.png");
+let charizard = new Hero("Charizard", 1, "Kanto", 30, 25, 18,"","","","assets/images/charizard/charizard1.png","assets/images/charizard/charizard2.png")
 
 //variaveis globais:
 //vez - indica qual player é a vez
@@ -131,34 +132,34 @@ function escolherpersonagem(value) {
   document.querySelectorAll(".imgpoke").forEach(element => {
     element.setAttribute('src', 'assets/images/pokeball.png')
   });
-  document.querySelector(`#img${value}`).setAttribute('src', 'assets/images/d4f0gnw-c79677cd-3f48-4175-ae8a-a3cd666fe8f1.png');
-  soundeffect.setAttribute('src', 'assets/sounds/pokeballsound.mp3');
-  soundeffect.play();
+  document.querySelector(`#img${value}`).setAttribute('src', 'assets/images/pokebola-aberta.png');
+  soundeffect2.setAttribute('src', 'assets/sounds/pokeballsound.mp3');
+  soundeffect2.play();
 
   if (value === 1) {
-    aparecerimagem('assets/images/boitata.png', boitata);
+    aparecerimagem(boitata.img, boitata);
   } else if (value === 2) {
-    aparecerimagem('assets/images/bart.png', bart);
+    aparecerimagem(bart.img, bart);
   } else if (value === 3) {
-    aparecerimagem('assets/images/yoshi.png', yoshi);
+    aparecerimagem(yoshi.img, yoshi);
   } else if (value === 4) {
-    aparecerimagem('assets/images/lula.png', lula);
+    aparecerimagem(lula.img, lula);
   } else if (value === 5) {
-    aparecerimagem('assets/images/galinho.png', pintinho);
+    aparecerimagem(pintinho.img, pintinho);
   } else if (value === 6) {
-    aparecerimagem('assets/images/freddy.png', freddy);
+    aparecerimagem(freddy.img, freddy);
   } else if (value === 7) {
-    aparecerimagem('assets/images/chucky.png', chucky);
+    aparecerimagem(chucky.img, chucky);
   } else if (value === 8) {
-    aparecerimagem('assets/images/darth.png', darth);
+    aparecerimagem(darth.img, darth);
   } else if (value === 9) {
-    aparecerimagem('assets/images/princesa.png', princesa);
+    aparecerimagem(princesa.img, princesa);
   } else if (value === 10) {
-    aparecerimagem('assets/images/monica.png', monica);
+    aparecerimagem(monica.img, monica);
   } else if (value === 11) {
-    aparecerimagem('assets/images/Mula_sem_cabeça.png', mula);
-  }else if (value === 12){
-    aparecerimagem('assets/images/charizard.png', charizard);
+    aparecerimagem(mula.img, mula);
+  } else if (value === 12) {
+    aparecerimagem(charizard.img, charizard);
   }
 }
 
@@ -182,10 +183,10 @@ function alertar() {
   alert("Escolha um personagem diferente de seu oponente!");
 }
 
-function reselect(){
+function reselect() {
   vez = 1;
   document.getElementById("div-btn").style.display = "none";
-  
+
   document.querySelector(".imgEscolhida").className = "imgpoke"
   document.querySelectorAll(".imgpoke").forEach(element => {
     element.setAttribute('src', 'assets/images/pokeball.png')
@@ -196,25 +197,21 @@ function reselect(){
   document.querySelectorAll(".poke").forEach(element => {
     element.setAttribute("onclick", `escolherpersonagem(${element.getAttribute("id")})`);
   });
-  
+
   document.getElementById("btn-alternar").disabled = false;
   document.getElementById("btn-finalizarSelecao").disabled = false;
   document.getElementById("btn-alternar").style.display = 'none';
   document.getElementById("btn-finalizarSelecao").style.display = 'none';
 
-  document.querySelector("#img-player1").removeAttribute("src");
+  document.querySelector("#img-player1").setAttribute("src: assets/images/nada.png");
   document.querySelector("#escolhap1").removeAttribute("src");
   document.querySelector("#escolhap2").removeAttribute("src");
-  document.querySelector("#img-player2").removeAttribute("src");
+  document.querySelector("#img-player2").setAttribute("src:src: assets/images/nada.png");
 
 
   document.getElementById("nome-personagem-p1").innerHTML = "";
   document.getElementById("universo-personagem-p1").innerHTML = "";
   document.getElementById("player1-monster-name").innerHTML = "";
-  document.getElementById("actual-hp-player1").innerHTML = "";
-  document.getElementById("total-hp-player1").innerHTML = "";
-  document.getElementById("actual-mp-player1").innerHTML = "";
-  document.getElementById("total-mp-player1").innerHTML = "";
   document.getElementById("hp1").innerHTML = "";
   document.getElementById("mp1").innerHTML = "";
   document.getElementById("st1").innerHTML = "";
@@ -226,10 +223,6 @@ function reselect(){
   document.getElementById("nome-personagem-p2").innerHTML = "";
   document.getElementById("universo-personagem-p2").innerHTML = "";
   document.getElementById("player2-monster-name").innerHTML = "";
-  document.getElementById("actual-hp-player2").innerHTML = "";
-  document.getElementById("total-hp-player2").innerHTML = "";
-  document.getElementById("actual-mp-player2").innerHTML = "";
-  document.getElementById("total-mp-player2").innerHTML = "";
   document.getElementById("hp2").innerHTML = "";
   document.getElementById("mp2").innerHTML = "";
   document.getElementById("st2").innerHTML = "";
@@ -286,123 +279,158 @@ function aparecerimagem(imagem, selecionado) {
   }
 }
 
-function recoilAttack(player) {
+function lightAttack(player, victim) {
   let attacker = {};
   let attacked = {};
   if (player === 1) {
     attacker = player1
     attacked = player2
-    turnop1 += 1
+    turnp1 += 1
   } else if (player === 2) {
     attacker = player2
     attacked = player1
-    turnop2 += 1
-  }
-  // soundeffect2.setAttribute('src', `${attacker.atk4sound}`);
-  // soundeffect2.play();
-  attacker.hardAtk();
-  textNDamage(attacker, attacked, 3)
-  attacker.hpatual -= attacker.recoil;
-  atualizaHP(attacked, attacker);
-  attacked.rage += 10
-  atualizaRG()
-  definesTurn();
-}
-
-function weakAttack(player) {
-  let attacker = {};
-  let attacked = {};
-  if (player === 1) {
-    attacker = player1
-    attacked = player2
-    turnop1 += 1
-  } else if (player === 2) {
-    attacker = player2
-    attacked = player1
-    turnop2 += 1
+    turnp2 += 1
   }
   soundeffect2.setAttribute('src', `${attacker.atk1sound}`);
   soundeffect2.play();
   attacker.lightAtk();
   textNDamage(attacker, attacked, 0)
-  atualizaHP(attacked, attacker);
-  attacked.rage += 10
-  atualizaRG()
+  updateHP(attacked, attacker);
+  attacked.rageactual += 10
+  $(`#img-player${victim}`).effect("shake");
+  updateRG()
   definesTurn();
 }
 
-function hardAttack(player) {
+function heavyAttack(player, victim) {
   let attacker = {};
   let attacked = {};
   if (player === 1) {
     attacker = player1
     attacked = player2
-    turnop1 += 1
+    turnp1 += 1
   } else if (player === 2) {
     attacker = player2
     attacked = player1
-    turnop2 += 1
+    turnp2 += 1
   }
   soundeffect2.setAttribute('src', `${attacker.atk2sound}`);
   soundeffect2.play();
 
   prob = Math.random();
   console.log(`prob = ${prob}`);
-  if(prob <= 0.65){
-    attacker.hardAtk();
+  if (prob <= 0.65) {
+    attacker.heavyAtk();
     textNDamage(attacker, attacked, 1)
-    atualizaHP(attacked, attacker);
-    attacker.mpatual -= 20;
-    atualizaMP();
-    attacked.rage += 10
-    atualizaRG()
+    updateHP(attacked, attacker);
+    attacker.mpactual -= 20;
+    updateMP();
+    attacked.rageactual += 15
+    $(`#img-player${victim}`).effect("shake");
+    updateRG()
   } else {
     textBox.innerHTML = `${attacker.name} errou o ataque!`
+    attacker.mpactual -= 20;
+    updateMP();
   }
   definesTurn();
 }
 
-function specialAttack(player) {
+function specialAttack(player, victim) {
   let attacker = {};
   let attacked = {};
   if (player === 1) {
     attacker = player1
     attacked = player2
-    turnop1 += 1
+    turnp1 += 1
   } else if (player === 2) {
     attacker = player2
     attacked = player1
-    turnop2 += 1
+    turnp2 += 1
   }
   soundeffect2.setAttribute('src', `${attacker.atk3sound}`);
   soundeffect2.play();
 
   prob = Math.random();
   console.log(`prob = ${prob}`);
-  if(prob <= 0.4){
+  if (prob <= 0.4) {
     attacker.special();
     textNDamage(attacker, attacked, 2)
-    atualizaHP(attacked, attacker);
-    attacker.mpatual -= 50;
-    atualizaMP();
-    attacked.rage += 10
-    atualizaRG()
+    updateHP(attacked, attacker);
+    attacker.mpactual -= 50;
+    updateMP();
+    attacked.rageactual += 30
+    $(`#img-player${victim}`).effect("shake");
+    updateRG()
   } else {
     textBox.innerHTML = `${attacker.name} errou o ataque!`
+    attacker.mpactual -= 50;
+    updateMP();
   }
 
   definesTurn();
 
 }
+
+function recoilAttack(player, victim) {
+  let attacker = {};
+  let attacked = {};
+  if (player === 1) {
+    attacker = player1
+    attacked = player2
+    turnp1 += 1
+  } else if (player === 2) {
+    attacker = player2
+    attacked = player1
+    turnp2 += 1
+  }
+  // soundeffect2.play();
+  attacker.heavyAtk();
+  textNDamage(attacker, attacked, 3)
+  attacker.hpactual -= Math.round(attacker.recoil);
+  updateHP(attacked, attacker);
+  attacked.rageactual += 20
+  $(`#img-player${victim}`).effect("shake");
+  $(`#img-player${player}`).effect("shake");
+  updateRG()
+  definesTurn();
+}
+
+function attBoost(player) {
+  let boostedPlayer = ""
+  if (player === 1) {
+    boostedPlayer = player1
+  } else if (player === 2) {
+    boostedPlayer = player2
+  }
+  console.log(boostedPlayer.rageimg)
+  // document.getElementById(`img-player${player}`).setAttribute('src', `.${boostedPlayer.rageimg}`);
+  boostedPlayer.st = Math.round(boostedPlayer.st * 1.25);
+  boostedPlayer.agi = Math.round(boostedPlayer.agi * 1.25);
+  boostedPlayer.int = Math.round(boostedPlayer.int * 1.25);
+  dmgUp()
+  boostedPlayer.hpactual += Math.round(boostedPlayer.hp * 0.25);
+  updateHP(boostedPlayer);
+  boostedPlayer.mpactual += Math.round(boostedPlayer.mp * 0.25);
+  updateMP();
+  boostedPlayer.rageactual = 0;
+  updateRG();
+  turnp1 = 0;
+  turnp2 = 0;
+  textBox.innerHTML = `${boostedPlayer.name} teve seus atributos aumentados em 25% <br>`;
+  textBox.innerHTML += ` ${boostedPlayer.name} teve ${Math.round(boostedPlayer.hp * 0.25)} de HP recuperado <br>`;
+  textBox.innerHTML += ` ${boostedPlayer.name} teve ${Math.round(boostedPlayer.mp * 0.25)} de MP recuperado <br>`;
+  definesTurn();
+}
 // atualiza as barras de hp
-function atualizaHP(attackedPlayer, otherPlayer) {
-  document.getElementById("actual-hp-player1").innerHTML = player1.hpatual;
-  document.getElementById("actual-hp-player2").innerHTML = player2.hpatual;
-  const hp1 = (player1.hpatual / player1.hp) * 100;
-  const hp2 = (player2.hpatual / player2.hp) * 100;
+function updateHP(attackedPlayer, otherPlayer) {
+  document.getElementById("actual-hp-player1").innerHTML = player1.hpactual;
+  document.getElementById("actual-hp-player2").innerHTML = player2.hpactual;
+  const hp1 = (player1.hpactual / player1.hp) * 100;
+  const hp2 = (player2.hpactual / player2.hp) * 100;
   document.getElementById("hp-p1").style.setProperty('--hp', hp1);
   document.getElementById("hp-p2").style.setProperty('--hp', hp2);
-  if (attackedPlayer.hpatual <= 0) {
+  if (attackedPlayer.hpactual <= 0) {
     soundeffect.setAttribute('src', 'assets/sounds/ganhador.wav');
     soundeffect.play();
     alert("Fim de jogo! " + otherPlayer.name + " ganhou")
@@ -412,18 +440,18 @@ function atualizaHP(attackedPlayer, otherPlayer) {
 }
 
 // atualiza as barras de mp
-function atualizaMP() {
-  document.getElementById("actual-mp-player1").innerHTML = player1.mpatual;
-  document.getElementById("actual-mp-player2").innerHTML = player2.mpatual;
-  const mp1 = (player1.mpatual / player1.mp) * 100;
-  const mp2 = (player2.mpatual / player2.mp) * 100;
+function updateMP() {
+  document.getElementById("actual-mp-player1").innerHTML = player1.mpactual;
+  document.getElementById("actual-mp-player2").innerHTML = player2.mpactual;
+  const mp1 = (player1.mpactual / player1.mp) * 100;
+  const mp2 = (player2.mpactual / player2.mp) * 100;
   document.getElementById("mp-p1").style.setProperty('--mp', mp1);
   document.getElementById("mp-p2").style.setProperty('--mp', mp2);
 }
 // atualiza as barras de rg
-function atualizaRG() {
-  const rg1 = player1.rageatual;
-  const rg2 = player2.rageatual;
+function updateRG() {
+  const rg1 = player1.rageactual;
+  const rg2 = player2.rageactual;
   document.getElementById("rage-p1").style.setProperty('--rg', rg1);
   document.getElementById("rage-p2").style.setProperty('--rg', rg2);
 }
@@ -432,25 +460,27 @@ function atualizaRG() {
 function textNDamage(playerWhoAttacked, otherPlayer, attackType) {
   const damageNow = Math.ceil(playerWhoAttacked.damage * (1 - (player2.def / 100)));
   const attackTypes = ["ATK Fraco", "ATK Forte", "Especial", "ATK com Recuo"]
-  otherPlayer.hpatual = otherPlayer.hpatual - damageNow;
-  console.log(player2.hpatual)
+  otherPlayer.hpactual = otherPlayer.hpactual - damageNow;
+  console.log(player2.hpactual)
   textBox.innerHTML = `${playerWhoAttacked.name} causou ${damageNow} de dano em ${otherPlayer.name} com ${attackTypes[attackType]}`
 }
 
-let turnop1 = 0;
-let turnop2 = 0;
+let turnp1 = 0;
+let turnp2 = 0;
 let first = 0;
+console.log("turnp1", turnp1)
+console.log("turnp2", turnp2)
 // define qual jogador pode jogar desabilitando o atk do outro
 function definesTurn() {
-  if (turnop1 === 0 && turnop2 === 0) {
+  if (turnp1 === 0 && turnp2 === 0) {
     whoPlaysFirst()
-  } else if (turnop1 < turnop2) {
+  } else if (turnp1 < turnp2) {
     p1 = false;
     p2 = true;
-  } else if (turnop1 > turnop2) {
+  } else if (turnp1 > turnp2) {
     p1 = true;
     p2 = false;
-  } else if (turnop1 === turnop2) {
+  } else if (turnp1 === turnp2) {
     if (first === 1) {
       p1 = false;
       p2 = true;
@@ -472,20 +502,22 @@ function definesTurn() {
   document.getElementById("btnOrange2").disabled = p2;
   document.getElementById("btnBlack2").disabled = p2;
 
-  if (player1.mpatual < 50) {
+  if (player1.mpactual < 50) {
     document.getElementById("btnEspecial1").disabled = true;
-  } else if (player1.mpatual < 20) {
+  }
+  if (player1.mpactual < 20) {
     document.getElementById("btnForte1").disabled = true;
   }
-  if (player1.rageatual < 100) {
+  if (player1.rageactual < 100) {
     document.getElementById("btnBlack1").disabled = true
   }
-  if (player2.mpatual < 50) {
+  if (player2.mpactual < 50) {
     document.getElementById("btnEspecial2").disabled = true;
-  } else if (player2.mpatual < 20) {
+  }
+  if (player2.mpactual < 20) {
     document.getElementById("btnForte2").disabled = true;
   }
-  if (player2.rageatual < 100) {
+  if (player2.rageactual < 100) {
     document.getElementById("btnBlack2").disabled = true
   }
 }
@@ -495,9 +527,40 @@ function whoPlaysFirst() {
     p1 = false
     p2 = true
     first = 1
-  } else {
+  } else if (player1.agi < player2.agi) {
     p1 = true
     p2 = false
     first = 2
+  } else {
+    let luck = Math.random()
+    console.log(luck)
+    if (luck < 0.5) {
+      p1 = false
+      p2 = true
+      first = 1
+    } else {
+      p1 = true
+      p2 = false
+      first = 2
+    }
+  }
+  stPlayer = ""
+  ndPlayer = ""
+  if (first === 1) {
+    stPlayer = player1.name
+    ndPlayer = player2.name
+  } else {
+    stPlayer = player2.name
+    ndPlayer = player1.name
+  }
+
+  textBox.innerHTML += `${stPlayer} ataca primeiro por ser mais ágil que ${ndPlayer}`
+
+  if (player1.rageactual < 100) {
+    document.getElementById("btnBlack1").disabled = true
+
+  }
+  if (player2.rageactual < 100) {
+    document.getElementById("btnBlack2").disabled = true
   }
 }
