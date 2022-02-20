@@ -91,6 +91,11 @@
     height: 200px;
     width: auto;
 }
+#escolhap2 {
+    height: 200px;
+    width: auto;
+    transform: scaleX(-1);
+}
 
 .poke {
     background-color: #faeb1fda;
@@ -246,7 +251,9 @@ main {
     position: relative;
     z-index: 1;
 }
-
+#img-player2 {
+    transform: scaleX(-1);
+}
 .status-player {
     background: #FFFFFFAA;
     display: flex;

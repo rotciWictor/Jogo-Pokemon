@@ -404,11 +404,11 @@ function attBoost(player) {
     boostedPlayer = player2
   }
   console.log(boostedPlayer.rageimg)
-  // document.getElementById(`img-player${player}`).setAttribute('src', `.${boostedPlayer.rageimg}`);
+  document.querySelector(`#img-player${player}`).setAttribute('src', boostedPlayer.rageimg);
   boostedPlayer.st = Math.round(boostedPlayer.st * 1.25);
   boostedPlayer.agi = Math.round(boostedPlayer.agi * 1.25);
   boostedPlayer.int = Math.round(boostedPlayer.int * 1.25);
-  dmgUp()
+  boostedPlayer.dmgUp()
   boostedPlayer.hpactual += Math.round(boostedPlayer.hp * 0.25);
   updateHP(boostedPlayer);
   boostedPlayer.mpactual += Math.round(boostedPlayer.mp * 0.25);
