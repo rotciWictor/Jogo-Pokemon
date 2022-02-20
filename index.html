@@ -49,6 +49,12 @@
                     src="assets/images/pokeball.png"></button>
             <button class="poke" onclick="escolherpersonagem(12)" id="12"><img id="img12" class="imgpoke"
                     src="assets/images/pokeball.png"></button>
+            <button class="poke" onclick="escolherpersonagem(13)" id="13"><img id="img13" class="imgpoke"
+                    src="assets/images/pokeball.png"></button>
+            <button class="poke" onclick="escolherpersonagem(14)" id="14"><img id="img14" class="imgpoke"
+                    src="assets/images/pokeball.png"></button>
+            <button class="poke" onclick="escolherpersonagem(15)" id="15"><img id="img15" class="imgpoke"
+                    src="assets/images/pokeball.png"></button>
         </div>
         <div id="confronto">
             <div class="atributos" id="atributos-personagem-p1">
@@ -63,7 +69,7 @@
                 <h2 id="nome-personagem-p1"></h2>
                 <img id="escolhap1">
                 <h3 id="universo-personagem-p1"></h3>
-                <input id="btn-alternar" type="button" value="Escolher" onclick="alternarVez()" style="display: none" />
+                <input id="btn-alternar" type="image" src="assets/images/ok.png" onclick="alternarVez()" style="display: none" />
             </div>
 
             <img src="assets/images/vs.png">
@@ -73,7 +79,7 @@
                 <h2 id="nome-personagem-p2"></h2>
                 <img id="escolhap2">
                 <h3 id="universo-personagem-p2"></h3>
-                <input id="btn-finalizarSelecao" type="button" value="Escolher" onclick="finalizarSelecao()"
+                <input id="btn-finalizarSelecao" type="image" src="assets/images/ok.png" onclick="finalizarSelecao()"
                     style="display: none" />
             </div>
             <div class="atributos" id="atributos-personagem-p2">
@@ -86,9 +92,9 @@
                 <h4></h4>
             </div>
         </div>
-        <div id="div-btn" style="display: none"><button id="btnbatalha" onclick="batalhar()"><img
-                    src="assets/images/botaoluta.png" style="height: fit-content;"></button>
-            <input type="button" value="Escolher novamente" onclick="reselect()"></div>
+        <div id="div-btn" style="display: none">
+            <input id="btnbatalha" type="image" onclick="batalhar()" src="assets/images/fight.png"/>
+            <input type ="image" src="assets/images/oops.png" onclick="reselect()"></div>
     </section>
     </div>
     </div>
@@ -188,7 +194,7 @@
                     </div>
                 </div>
             </section>
-            <button onclick="location.reload()">Reiniciar</button>
+            <input type="image" src="assets/images/start.png" onclick="location.reload()"/>
             <audio id="soundeffect2"></audio>
         </main>
     </div>
